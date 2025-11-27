@@ -1,6 +1,6 @@
-# 釜山 5 日親子遊路線
+# 🇰🇷 [App Preview] 釜山 5 日親子遊 VBP 路線 (Vibe Coding)
 
-## 📌 I. 旅遊資訊儀表板
+## 📌 I. 旅遊資訊儀表板 (Dashboard)
 
 | 項目 | 資訊 | 🔗 點擊查看 (模擬動態資訊) |
 | :--- | :--- | :--- |
@@ -29,7 +29,7 @@
 | **Day 5** | 返程日 | ✈️ **收尾** | [→ Day 5 畫面](#day-5-🛍️-購物與返程-vibe) |
 
 ---
-## 🗺️ III. 行程細節
+## 🗺️ III. 行程細節 (App Screens)
 
 ### <a id="day-1-🌊-海景與-vbp-啟動-海雲台"></a> Day 1: 🌊 海景與 VBP 啟動 (海雲台)
 
@@ -78,4 +78,22 @@
 > **🆓 VBP 結束：** 今日為免費觀光與自費體驗
 
 * **9:30 AM - 12:30 PM**
-    *
+    * **📍 地點:** 🏞️ **[太宗台 (Taejongdae)](https://www.google.com/maps/search/?api=1&query=Taejongdae)**
+    * **💰 費用:** Danubi 遊園車約 **₩ 3,000** (約 $75 TWD)/人。
+* **12:30 PM - 2:30 PM**
+    * **📍 地點:** 🌉 **[影島大橋 (Yeongdo Bridge)](https://www.google.com/maps/search/?api=1&query=Yeongdo+Bridge)**
+* **2:30 PM - 4:30 PM**
+    * **📍 地點:** 🐟 **[札嘎其市場 (Jagalchi Market)](https://www.google.com/maps/search/?api=1&query=Jagalchi+Market)**
+    * **✨ Vibe:** 市場海鮮午餐預算：約 **₩ 80,000+** (約 $2,000+ TWD)。
+
+---
+
+### <a id="day-5-🛍️-購物與返程-vibe"></a> Day 5: 🛍️ 購物與返程 Vibe
+
+* **10:00 AM - 11:30 AM**
+    * **📍 地點:** 📖 **[寶水洞舊書街 (Bosu-dong Bookstore Street)](https://www.google.com/maps/search/?api=1&query=Bosu-dong+Bookstore+Street)**
+* **11:30 AM - 3:00 PM**
+    * **📍 地點:** 🛒 **[Centum City (新世界百貨)](https://www.google.com/maps/search/?api=1&query=Shinsegae+Centum+City)**
+    * **✨ Vibe:** 購物/午餐預算。
+
+---
