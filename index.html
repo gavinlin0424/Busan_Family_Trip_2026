@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>釜山家庭旅遊 2026 - 完整規劃</title>
+    <title>🇰🇷 釜山五天四夜家庭親子遊行程規劃 (2026年8月)</title>
     
     <style>
         :root {
@@ -14,6 +14,7 @@
             --color-card: #FFFFFF;
             --color-text: #333333;
             --color-day-bg: #E0F7FA; /* 淺藍綠 */
+            --color-note: #A52A2A; /* 深紅色用於重要提醒 */
         }
         body {
             font-family: 'Arial', '微軟正黑體', sans-serif;
@@ -46,6 +47,24 @@
             margin-bottom: 20px;
         }
 
+        /* 核心資訊表格樣式 */
+        .core-info table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .core-info th, .core-info td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .core-info th {
+            background-color: var(--color-day-bg);
+            color: var(--color-primary);
+            width: 30%;
+        }
+
         /* 資訊卡片區塊 (天氣/匯率) */
         .info-cards {
             display: flex;
@@ -66,7 +85,7 @@
             font-size: 1.2em;
         }
 
-        /* 匯率轉換樣式 */
+        /* 匯率轉換樣式 (與前次相同) */
         #currency-converter input {
             padding: 8px;
             border: 1px solid #ccc;
@@ -75,13 +94,8 @@
             margin-right: 10px;
             box-sizing: border-box;
         }
-        #krw-input {
-            width: 150px;
-        }
-        #rate-input {
-            width: 80px; /* 較窄 */
-            text-align: center;
-        }
+        #krw-input { width: 150px; }
+        #rate-input { width: 80px; text-align: center; }
         #convert-button {
             padding: 8px 15px;
             background-color: #4CAF50;
@@ -89,14 +103,6 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-        }
-        #convert-button:hover {
-            background-color: #45a049;
-        }
-        #twd-output {
-            font-weight: bold;
-            color: #007bff;
-            margin-top: 10px;
         }
 
         /* 行程表樣式 (與前次相同) */
@@ -113,9 +119,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s;
         }
-        .day-card:hover {
-            transform: translateY(-5px);
-        }
+        .day-card:hover { transform: translateY(-5px); }
         .day-card h3 {
             background-color: var(--color-day-bg);
             color: var(--color-primary);
@@ -130,12 +134,12 @@
             padding: 0;
         }
         .day-card li {
-            padding: 5px 0;
+            padding: 8px 0;
             border-bottom: 1px dotted #e0e0e0;
+            font-size: 0.95em;
         }
-        .day-card li:last-child {
-            border-bottom: none;
-        }
+        .day-card li:last-child { border-bottom: none; }
+        .note { color: var(--color-note); font-weight: bold; margin-top: 5px; font-size: 0.9em;}
     </style>
 </head>
 <body>
@@ -143,9 +147,20 @@
     <div class="container">
         
         <header>
-            <h1>✈️ 釜山家庭五日遊 2026 - 規劃中心</h1>
-            <p>橫向展開的夏季旅行氛圍，溫暖柔和的色調</p>
+            <h1>🇰🇷 釜山五天四夜家庭親子遊行程規劃</h1>
+            <p>(2026年8月 - 華航早去晚回)</p>
         </header>
+
+        <div class="core-info">
+            <h2>✨ 核心資訊與 VBP 48H 通行證使用</h2>
+            <table>
+                <tr><th>旅遊日期</th><td>2026年8月 (5天4夜)</td></tr>
+                <tr><th>家庭成員</th><td>兩大兩小 (7歲與11歲)</td></tr>
+                <tr><th>住宿安排</th><td>📍 Day 1-2: 海雲台 / 📍 Day 3-5: 南浦洞</td></tr>
+                <tr><th>VBP 48H 區間</th><td>📅 Day 1 下午 (約 14:00) → 📅 Day 3 下午 (約 14:00)</td></tr>
+                <tr><th>主要 VBP 景點</th><td>樂天世界、Luge 滑坡車、藍線公園(海岸列車)、釜山塔</td></tr>
+            </table>
+        </div>
 
         <div class="info-cards">
             
@@ -170,51 +185,60 @@
 
         </div>
 
-        <h2>🗺️ 釜山五日旅遊行程總覽</h2>
+        <h2>📅 行程細節 (VBP 免費項目已標註)</h2>
         <div class="itinerary-grid">
 
             <div class="day-card">
-                <h3>Day 1：抵達與海景夜色</h3>
+                <h3>Day 1: ✈️ 抵達與海景 VBP 啟動</h3>
+                <p style="color: green; font-weight: bold;">VBP 狀態: 啟動 (約 14:00)</p>
                 <ul>
-                    <li>飛機（CHINA AIRLINES）抵達釜山。</li>
-                    <li>乘坐藍線公園天空膠囊，欣賞海景。</li>
-                    <li>背景是廣安里大橋夜景。</li>
+                    <li>**上午:** 抵達金海機場 (PUS) → 交通卡/換匯 → 海雲台 Check-in/寄放行李。</li>
+                    <li>**【VBP 1】下午:** 海雲台藍線公園：**海岸列車** (VBP 適用)。<span class="note">⚠️ 提醒：VBP 不包含天空膠囊！</span></li>
+                    <li>**傍晚:** 🏯 海東龍宮寺參觀 (免費)。</li>
+                    <li>**晚上:** 🌃 The Bay 101：晚餐與遊艇夜景。</li>
                 </ul>
             </div>
 
             <div class="day-card">
-                <h3>Day 2：樂園與速度</h3>
+                <h3>Day 2: 🎢 VBP 核心：樂園與競速</h3>
+                <p style="color: green; font-weight: bold;">VBP 狀態: 啟用中</p>
                 <ul>
-                    <li>釜山樂天世界城堡前合影。</li>
-                    <li>一家人在Luge賽道上滑行（配戴運動頭盔）。</li>
-                    <li>背景是海灘。</li>
+                    <li>**上午 (10:00):** **【VBP 2】釜山樂天世界 Adventure Busan**：全日暢玩 Magic Forest。</li>
+                    <li>**下午:** **【VBP 3】滑坡車 Luge Skyline**：前往奧西利亞站體驗。<span class="note">⚠️ 提醒：確認 7歲兒童身高限制 (85~110cm 需大人陪同)。</span></li>
+                    <li>**傍晚/晚上:** 🏖️ 海雲台海灘/廣安里：沙灘活動與晚餐。</li>
                 </ul>
             </div>
 
             <div class="day-card">
-                <h3>Day 3：城市與文化巡禮</h3>
+                <h3>Day 3: 🗼 VBP 結束與城市轉場</h3>
+                <p style="color: orange; font-weight: bold;">VBP 狀態: 預計 14:00 結束</p>
                 <ul>
-                    <li>一家人乘坐地鐵 (Metro) 移動。</li>
-                    <li>釜山塔觀景台俯瞰城市。</li>
-                    <li>在甘川洞文化村與小王子雕像合影。</li>
+                    <li>**上午:** 換房/移動：海雲台退房 → 前往南浦洞飯店寄放行李/入住。</li>
+                    <li>**【VBP 4】中午 (VBP 結束前):** **龍頭山公園/釜山塔**登塔。 <span class="note">🚨 緊急提醒：務必在 VBP 結束前 (約 14:00) 刷卡完成登塔！</span></li>
+                    <li>**下午:** 🎨 甘川洞文化村：與小王子拍照散步 (免費)。</li>
+                    <li>**晚上:** 🍿 南浦洞/BIFF廣場：逛街與品嚐在地小吃。</li>
                 </ul>
             </div>
             
             <div class="day-card">
-                <h3>Day 4：海島與海產</h3>
+                <h3>Day 4: ⚓️ 歷史、開橋與文化</h3>
+                <p style="color: gray; font-weight: bold;">VBP 狀態: 已過期 / 自費日</p>
                 <ul>
-                    <li>乘坐太宗台 Danubi Train。</li>
-                    <li>觀賞影島大橋開橋場景。</li>
-                    <li>札嘎其市場，一家人圍觀海鮮。</li>
+                    <li>**上午:** 🏞️ 太宗台：搭乘 Danubi 遊園車 (費用自理)。</li>
+                    <li>**中午/下午 (14:00):** 🌉 影島大橋：**觀看開橋儀式**。<span class="note">🚨 關鍵提醒：儀式**目前只在每週六舉行**，請確認您的 Day 4 是否為週六。</span></li>
+                    <li>**下午:** 🐟 札嘎其市場 (Jagalchi Market) 參觀/午餐。</li>
+                    <li>**晚上:** 🛍️ 國際市場/南浦洞商圈自由活動。</li>
                 </ul>
             </div>
 
             <div class="day-card">
-                <h3>Day 5：購物與返程</h3>
+                <h3>Day 5: 🛍️ 購物與返程</h3>
+                <p style="color: gray; font-weight: bold;">VBP 狀態: 已過期 / 購物日</p>
                 <ul>
-                    <li>Centum City百貨購物。</li>
-                    <li>一家人乘坐機場巴士 (Airport Bus)。</li>
-                    <li>看向遠處的飛機，準備返程。</li>
+                    <li>**上午:** 📖 寶水洞舊書街 (視興趣停留)。</li>
+                    <li>**中午/下午:** 🛒 Centum City (新世界百貨)：午餐與伴手禮採購。</li>
+                    <li>可選：Spa Land 汗蒸幕 (需自費)。</li>
+                    <li>**下午/傍晚:** 前往金海機場 (PUS) → 華航晚回班機。</li>
                 </ul>
             </div>
 
@@ -233,7 +257,7 @@
         const rateInput = document.getElementById('rate-input');
         const rateStatus = document.getElementById('rate-status');
         
-        // --- A. 天氣資訊抓取 (與前次相同) ---
+        // --- A. 天氣資訊抓取 ---
         async function fetchWeather() {
             try {
                 const response = await fetch(WEATHER_URL);
@@ -259,7 +283,7 @@
             }
         }
 
-        // --- B. 匯率資訊抓取 (新增手動輸入機制) ---
+        // --- B. 匯率資訊抓取 (含手動輸入機制) ---
         async function fetchExchangeRate() {
             rateStatus.innerText = "(自動載入中...)";
             rateInput.disabled = true;
@@ -283,15 +307,14 @@
 
         // 處理匯率載入失敗的函式
         function handleRateLoadError() {
-            rateStatus.innerHTML = "<span style='color: red;'>載入失敗！請手動輸入 KRW/TWD 匯率。</span>";
+            rateStatus.innerHTML = "<span style='color: var(--color-note);'>載入失敗！請手動輸入 KRW/TWD 匯率。</span>";
             rateInput.disabled = false; // 啟用手動輸入
             rateInput.focus();
         }
         
-        // --- C. 匯率轉換邏輯 (從輸入框獲取匯率) ---
+        // --- C. 匯率轉換邏輯 ---
         document.getElementById('convert-button').addEventListener('click', function() {
             const krwInput = parseFloat(document.getElementById('krw-input').value);
-            // 從 rate-input 框中獲取目前的匯率值
             const currentExchangeRate = parseFloat(rateInput.value);
             const twdOutput = document.getElementById('twd-output');
 
@@ -305,7 +328,6 @@
                 return;
             }
 
-            // 計算結果
             const resultTWD = krwInput * currentExchangeRate;
             
             twdOutput.innerHTML = 
