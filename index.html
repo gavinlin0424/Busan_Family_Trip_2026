@@ -73,6 +73,14 @@
             border-radius: 4px;
             width: 150px;
             margin-right: 10px;
+            box-sizing: border-box;
+        }
+        #krw-input {
+            width: 150px;
+        }
+        #rate-input {
+            width: 80px; /* 較窄 */
+            text-align: center;
         }
         #convert-button {
             padding: 8px 15px;
@@ -91,7 +99,7 @@
             margin-top: 10px;
         }
 
-        /* 行程表樣式 */
+        /* 行程表樣式 (與前次相同) */
         .itinerary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -148,7 +156,11 @@
 
             <div class="card" id="currency-card">
                 <h3>💰 韓圜 (KRW) 換算台幣 (TWD)</h3>
-                <p>即時匯率: <span id="exchange-rate-display">載入中...</span></p>
+                <p>
+                    KRW 1 = TWD 
+                    <input type="number" id="rate-input" value="0.0245" step="0.0001" disabled style="font-weight: bold;">
+                    <span id="rate-status" style="font-size: 0.9em;">(自動載入中...)</span>
+                </p>
                 <div id="currency-converter">
                     <input type="number" id="krw-input" placeholder="輸入韓圜金額 (KRW)">
                     <button id="convert-button">轉換</button>
@@ -218,9 +230,10 @@
         // *** 2. 匯率資訊設定：使用無需 Key 的公共 API ***
         const EXCHANGE_RATE_URL = "https://api.exchangerate.host/latest?base=KRW&symbols=TWD";
 
-        let currentExchangeRate = 0.0245; // 預設值 (KRW to TWD)
+        const rateInput = document.getElementById('rate-input');
+        const rateStatus = document.getElementById('rate-status');
         
-        // --- A. 天氣資訊抓取 ---
+        // --- A. 天氣資訊抓取 (與前次相同) ---
         async function fetchWeather() {
             try {
                 const response = await fetch(WEATHER_URL);
@@ -246,31 +259,46 @@
             }
         }
 
-        // --- B. 匯率資訊抓取 ---
+        // --- B. 匯率資訊抓取 (新增手動輸入機制) ---
         async function fetchExchangeRate() {
+            rateStatus.innerText = "(自動載入中...)";
+            rateInput.disabled = true;
+
             try {
                 const response = await fetch(EXCHANGE_RATE_URL);
                 const data = await response.json();
                 
                 if (data.rates && data.rates.TWD) {
-                    currentExchangeRate = data.rates.TWD; 
-                    document.getElementById('exchange-rate-display').innerHTML = 
-                        `<strong>KRW 1 = TWD ${currentExchangeRate.toFixed(4)}</strong>`;
+                    const fetchedRate = data.rates.TWD;
+                    rateInput.value = fetchedRate.toFixed(4);
+                    rateStatus.innerText = "(已自動載入)";
                 } else {
-                    document.getElementById('exchange-rate-display').innerHTML = 
-                        `載入失敗，使用預設值 (TWD ${currentExchangeRate.toFixed(4)})`;
+                    handleRateLoadError();
                 }
             } catch (error) {
                 console.error("Fetch Exchange Rate Error:", error);
-                document.getElementById('exchange-rate-display').innerHTML = 
-                    `載入匯率失敗 (網路錯誤)，使用預設值 (TWD ${currentExchangeRate.toFixed(4)})`;
+                handleRateLoadError();
             }
         }
+
+        // 處理匯率載入失敗的函式
+        function handleRateLoadError() {
+            rateStatus.innerHTML = "<span style='color: red;'>載入失敗！請手動輸入 KRW/TWD 匯率。</span>";
+            rateInput.disabled = false; // 啟用手動輸入
+            rateInput.focus();
+        }
         
-        // --- C. 匯率轉換邏輯 ---
+        // --- C. 匯率轉換邏輯 (從輸入框獲取匯率) ---
         document.getElementById('convert-button').addEventListener('click', function() {
             const krwInput = parseFloat(document.getElementById('krw-input').value);
+            // 從 rate-input 框中獲取目前的匯率值
+            const currentExchangeRate = parseFloat(rateInput.value);
             const twdOutput = document.getElementById('twd-output');
+
+            if (isNaN(currentExchangeRate) || currentExchangeRate <= 0) {
+                twdOutput.innerText = "請輸入有效的匯率值！";
+                return;
+            }
 
             if (isNaN(krwInput) || krwInput <= 0) {
                 twdOutput.innerText = "請輸入有效的韓圜金額！";
@@ -286,8 +314,8 @@
 
         // 頁面載入時執行：自動抓取天氣和匯率
         window.onload = function() {
-            fetchWeather(); // 啟用天氣功能
-            fetchExchangeRate(); // 啟用匯率功能
+            fetchWeather();
+            fetchExchangeRate();
         };
 
     </script>
