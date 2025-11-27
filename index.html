@@ -3,111 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>釜山家庭旅遊 2026 互動規劃</title>
+    <title>釜山家庭旅遊 2026 - 完整規劃</title>
+    
     <style>
+        :root {
+            /* 柔和色系 */
+            --color-primary: #FF7043; /* 暖橙色 */
+            --color-secondary: #FFCC80; /* 柔和黃 */
+            --color-background: #FFFDE7; /* 奶油白 */
+            --color-card: #FFFFFF;
+            --color-text: #333333;
+            --color-day-bg: #E0F7FA; /* 淺藍綠 */
+        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', '微軟正黑體', sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f9;
-            color: #333;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
         }
         .container {
-            max-width: 700px;
+            max-width: 1000px;
             margin: 40px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
-        h1 {
-            color: #1a73e8;
+        header {
             text-align: center;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 15px;
+            padding: 30px 0;
+            background-color: var(--color-primary);
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        p {
+        h1 { margin: 0; font-size: 2.5em; }
+        h2 { 
+            color: var(--color-primary); 
+            border-bottom: 3px solid var(--color-secondary);
+            padding-bottom: 5px;
+            margin-top: 30px;
             margin-bottom: 20px;
         }
-        /* 對話框/輸入框樣式 */
-        #chat-input {
-            width: 98%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box; /* 確保 padding 不會增加寬度 */
-            font-size: 16px;
+
+        /* 資訊卡片區塊 (天氣/匯率) */
+        .info-cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
         }
-        /* 按鈕樣式 */
-        #send-button {
-            padding: 12px 25px;
-            background-color: #4CAF50; /* 綠色 */
+        .card {
+            flex: 1;
+            background-color: var(--color-card);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--color-primary);
+        }
+        .card h3 { 
+            margin-top: 0; 
+            color: var(--color-primary);
+            font-size: 1.2em;
+        }
+
+        /* 匯率轉換樣式 */
+        #currency-converter input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 150px;
+            margin-right: 10px;
+        }
+        #convert-button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
         }
-        #send-button:hover {
+        #convert-button:hover {
             background-color: #45a049;
         }
-        /* 輸出結果區樣式 */
-        #output-area {
-            margin-top: 25px;
+        #twd-output {
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 10px;
+        }
+
+        /* 行程表樣式 */
+        .itinerary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .day-card {
+            background-color: var(--color-card);
+            border: 1px solid #eee;
+            border-radius: 8px;
             padding: 20px;
-            border: 1px dashed #4CAF50;
-            background-color: #eafaea;
-            border-radius: 6px;
-            min-height: 80px;
-            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        .day-card:hover {
+            transform: translateY(-5px);
+        }
+        .day-card h3 {
+            background-color: var(--color-day-bg);
+            color: var(--color-primary);
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 8px 8px 0 0;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .day-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .day-card li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #e0e0e0;
+        }
+        .day-card li:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🏖️ 釜山家庭旅遊 2026 互動資訊站</h1>
-        <p>這是一個模擬的互動式畫面。您可以輸入關於五天行程的問題，系統會給予回覆。</p>
         
-        <textarea id="chat-input" rows="3" placeholder="請在這裡輸入您的問題，例如：Day 3 的行程是什麼？"></textarea>
+        <header>
+            <h1>✈️ 釜山家庭五日遊 2026 - 規劃中心</h1>
+            <p>橫向展開的夏季旅行氛圍，溫暖柔和的色調</p>
+        </header>
 
-        <button id="send-button">送出查詢</button>
+        <div class="info-cards">
+            
+            <div class="card" id="weather-card">
+                <h3>☀️ 釜山目前天氣</h3>
+                <div id="weather-output">載入中...</div>
+            </div>
 
-        <h2>💬 旅遊資訊回覆</h2>
-        <div id="output-area">
-            等待您的提問...
+            <div class="card" id="currency-card">
+                <h3>💰 韓圜 (KRW) 換算台幣 (TWD)</h3>
+                <p>即時匯率: <span id="exchange-rate-display">載入中...</span></p>
+                <div id="currency-converter">
+                    <input type="number" id="krw-input" placeholder="輸入韓圜金額 (KRW)">
+                    <button id="convert-button">轉換</button>
+                    <div id="twd-output"></div>
+                </div>
+            </div>
+
         </div>
+
+        <h2>🗺️ 釜山五日旅遊行程總覽</h2>
+        <div class="itinerary-grid">
+
+            <div class="day-card">
+                <h3>Day 1：抵達與海景夜色</h3>
+                <ul>
+                    <li>飛機（CHINA AIRLINES）抵達釜山。</li>
+                    <li>乘坐藍線公園天空膠囊，欣賞海景。</li>
+                    <li>背景是廣安里大橋夜景。</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h3>Day 2：樂園與速度</h3>
+                <ul>
+                    <li>釜山樂天世界城堡前合影。</li>
+                    <li>一家人在Luge賽道上滑行（配戴運動頭盔）。</li>
+                    <li>背景是海灘。</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h3>Day 3：城市與文化巡禮</h3>
+                <ul>
+                    <li>一家人乘坐地鐵 (Metro) 移動。</li>
+                    <li>釜山塔觀景台俯瞰城市。</li>
+                    <li>在甘川洞文化村與小王子雕像合影。</li>
+                </ul>
+            </div>
+            
+            <div class="day-card">
+                <h3>Day 4：海島與海產</h3>
+                <ul>
+                    <li>乘坐太宗台 Danubi Train。</li>
+                    <li>觀賞影島大橋開橋場景。</li>
+                    <li>札嘎其市場，一家人圍觀海鮮。</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h3>Day 5：購物與返程</h3>
+                <ul>
+                    <li>Centum City百貨購物。</li>
+                    <li>一家人乘坐機場巴士 (Airport Bus)。</li>
+                    <li>看向遠處的飛機，準備返程。</li>
+                </ul>
+            </div>
+
+        </div>
+
     </div>
 
     <script>
-        // 當網頁完全載入後，為按鈕新增一個點擊事件監聽器
-        document.getElementById('send-button').addEventListener('click', function() {
-            var input = document.getElementById('chat-input').value.trim();
-            var outputArea = document.getElementById('output-area');
-            var response = "";
+        // *** 1. 天氣資訊設定：請替換成您的 OpenWeatherMap API Key ***
+        const OPENWEATHER_API_KEY = "e1e934239206d71794653b12adafb225"; // <<-- 在此貼上您的 Key
+        const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?q=Busan,KR&units=metric&lang=zh_tw&appid=${OPENWEATHER_API_KEY}`;
+        
+        // *** 2. 匯率資訊設定：使用無需 Key 的公共 API ***
+        const EXCHANGE_RATE_URL = "https://api.exchangerate.host/latest?base=KRW&symbols=TWD";
 
-            // 根據輸入內容產生回應 (這是最簡單的互動邏輯)
-            if (input.includes("Day 1")) {
-                response = "Day 1 的行程是：搭乘中華航空抵達，隨後乘坐藍線公園天空膠囊，欣賞廣安里大橋夜景。";
-            } else if (input.includes("Day 2")) {
-                response = "Day 2 的行程是：在釜山樂天世界城堡前合影，接著一家人會在Luge賽道上滑行（滑坡車將是爸爸、大兒子各一台，媽媽和小兒子一台）。";
-            } else if (input.includes("Day 3")) {
-                response = "Day 3 的行程是：乘坐地鐵移動，登上釜山塔俯瞰城市，並在甘川洞文化村與小王子雕像合影。";
-            } else if (input.includes("Day 4")) {
-                response = "Day 4 的行程是：乘坐太宗台 Danubi Train，觀看影島大橋開橋，並在札嘎其市場圍觀海鮮。";
-            } else if (input.includes("Day 5")) {
-                response = "Day 5 的行程是：Centum City 百貨購物，隨後乘坐機場巴士準備返程。";
-            } else if (input === "") {
-                response = "請輸入您的問題！";
-            } else {
-                response = "抱歉，我只知道 Day 1 到 Day 5 的行程資訊。請嘗試輸入例如「Day 4 的行程是什麼？」";
+        let currentExchangeRate = 0.0245; // 預設值 (KRW to TWD)
+        
+        // --- A. 天氣資訊抓取 ---
+        async function fetchWeather() {
+            try {
+                const response = await fetch(WEATHER_URL);
+                const data = await response.json();
+
+                const weatherOutput = document.getElementById('weather-output');
+                if (data.main) {
+                    const temp = Math.round(data.main.temp);
+                    const description = data.weather[0].description;
+                    const city = data.name;
+                    weatherOutput.innerHTML = `
+                        城市: ${city}<br>
+                        目前溫度: <strong>${temp}°C</strong><br>
+                        概況: ${description}<br>
+                        （數據來自OpenWeatherMap）
+                    `;
+                } else {
+                    weatherOutput.innerHTML = "無法獲取天氣資訊，請確認 API Key 是否正確或城市名稱。";
+                }
+            } catch (error) {
+                console.error("Fetch Weather Error:", error);
+                document.getElementById('weather-output').innerHTML = "載入天氣失敗 (網路或 API 錯誤)。";
+            }
+        }
+
+        // --- B. 匯率資訊抓取 ---
+        async function fetchExchangeRate() {
+            try {
+                const response = await fetch(EXCHANGE_RATE_URL);
+                const data = await response.json();
+                
+                if (data.rates && data.rates.TWD) {
+                    currentExchangeRate = data.rates.TWD; 
+                    document.getElementById('exchange-rate-display').innerHTML = 
+                        `<strong>KRW 1 = TWD ${currentExchangeRate.toFixed(4)}</strong>`;
+                } else {
+                    document.getElementById('exchange-rate-display').innerHTML = 
+                        `載入失敗，使用預設值 (TWD ${currentExchangeRate.toFixed(4)})`;
+                }
+            } catch (error) {
+                console.error("Fetch Exchange Rate Error:", error);
+                document.getElementById('exchange-rate-display').innerHTML = 
+                    `載入匯率失敗 (網路錯誤)，使用預設值 (TWD ${currentExchangeRate.toFixed(4)})`;
+            }
+        }
+        
+        // --- C. 匯率轉換邏輯 ---
+        document.getElementById('convert-button').addEventListener('click', function() {
+            const krwInput = parseFloat(document.getElementById('krw-input').value);
+            const twdOutput = document.getElementById('twd-output');
+
+            if (isNaN(krwInput) || krwInput <= 0) {
+                twdOutput.innerText = "請輸入有效的韓圜金額！";
+                return;
             }
 
-            // 將回應內容顯示在輸出區域
-            outputArea.innerHTML = response;
+            // 計算結果
+            const resultTWD = krwInput * currentExchangeRate;
+            
+            twdOutput.innerHTML = 
+                `${krwInput.toLocaleString()} KRW 約等於 <strong>${resultTWD.toFixed(0).toLocaleString()} TWD</strong>`;
         });
+
+        // 頁面載入時執行：自動抓取天氣和匯率
+        window.onload = function() {
+            fetchWeather(); // 啟用天氣功能
+            fetchExchangeRate(); // 啟用匯率功能
+        };
+
     </script>
 
 </body>
