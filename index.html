@@ -85,7 +85,7 @@
             font-size: 1.2em;
         }
 
-        /* 匯率轉換樣式 (與前次相同) */
+        /* 匯率與互動元件樣式 */
         #currency-converter input {
             padding: 8px;
             border: 1px solid #ccc;
@@ -105,13 +105,13 @@
             cursor: pointer;
         }
 
-        /* 行程表樣式 (與前次相同) */
+        /* 行程表與複製按鈕樣式 */
         .itinerary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
-        .day-card {
+        .day-card { /* ... (卡片樣式與前次相同) ... */
             background-color: var(--color-card);
             border: 1px solid #eee;
             border-radius: 8px;
@@ -137,9 +137,36 @@
             padding: 8px 0;
             border-bottom: 1px dotted #e0e0e0;
             font-size: 0.95em;
+            display: flex; /* 讓內容和按鈕在同一行 */
+            align-items: center;
         }
         .day-card li:last-child { border-bottom: none; }
         .note { color: var(--color-note); font-weight: bold; margin-top: 5px; font-size: 0.9em;}
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-left: auto; /* 將按鈕推到最右邊 */
+            color: #1a73e8;
+            padding: 0 5px;
+            transition: color 0.2s;
+        }
+        .copy-btn:hover {
+            color: #004d99;
+        }
+        .copy-success {
+            color: green;
+            margin-left: 5px;
+            font-size: 0.9em;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -185,17 +212,29 @@
 
         </div>
 
-        <h2>📅 行程細節 (VBP 免費項目已標註)</h2>
+        <h2>📅 行程細節 (點擊 📋 即可複製地址)</h2>
         <div class="itinerary-grid">
 
             <div class="day-card">
                 <h3>Day 1: ✈️ 抵達與海景 VBP 啟動</h3>
                 <p style="color: green; font-weight: bold;">VBP 狀態: 啟動 (約 14:00)</p>
                 <ul>
-                    <li>**上午:** 抵達金海機場 (PUS) → 交通卡/換匯 → 海雲台 Check-in/寄放行李。</li>
-                    <li>**【VBP 1】下午:** 海雲台藍線公園：**海岸列車** (VBP 適用)。<span class="note">⚠️ 提醒：VBP 不包含天空膠囊！</span></li>
-                    <li>**傍晚:** 🏯 海東龍宮寺參觀 (免費)。</li>
-                    <li>**晚上:** 🌃 The Bay 101：晚餐與遊艇夜景。</li>
+                    <li data-address="108 Gonghangjinip-ro, Gangseo-gu, Busan, South Korea">
+                        **上午:** 抵達 <a href="https://www.google.com/maps/search/?api=1&query=Gimhae+International+Airport" target="_blank">金海機場 (PUS)</a> → 交通卡/換匯 → 海雲台 Check-in/寄放行李。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="1370-1 Jung-dong, Haeundae-gu, Busan, South Korea">
+                        **【VBP 1】下午:** <a href="https://www.google.com/maps/search/?api=1&query=Busan+Blue+Line+Park+Mipo" target="_blank">海雲台藍線公園</a>：**海岸列車** (VBP 適用)。<span class="note">⚠️ 提醒：VBP 不包含天空膠囊！</span>
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="86 Yonggung-gil, Gijang-eup, Gijang-gun, Busan, South Korea">
+                        **傍晚:** 🏯 <a href="https://www.google.com/maps/search/?api=1&query=Haedong+Yonggungsa+Temple" target="_blank">海東龍宮寺</a>參觀 (免費)。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="52 Dongbaek-ro, Haeundae-gu, Busan, South Korea">
+                        **晚上:** 🌃 <a href="https://www.google.com/maps/search/?api=1&query=The+Bay+101" target="_blank">The Bay 101</a>：晚餐與遊艇夜景。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
                 </ul>
             </div>
 
@@ -203,9 +242,15 @@
                 <h3>Day 2: 🎢 VBP 核心：樂園與競速</h3>
                 <p style="color: green; font-weight: bold;">VBP 狀態: 啟用中</p>
                 <ul>
-                    <li>**上午 (10:00):** **【VBP 2】釜山樂天世界 Adventure Busan**：全日暢玩 Magic Forest。</li>
-                    <li>**下午:** **【VBP 3】滑坡車 Luge Skyline**：前往奧西利亞站體驗。<span class="note">⚠️ 提醒：確認 7歲兒童身高限制 (85~110cm 需大人陪同)。</span></li>
-                    <li>**傍晚/晚上:** 🏖️ 海雲台海灘/廣安里：沙灘活動與晚餐。</li>
+                    <li data-address="58 Gijanghaean-ro, Gijang-gun, Busan, South Korea">
+                        **上午 (10:00):** **【VBP 2】** <a href="https://www.google.com/maps/search/?api=1&query=Lotte+World+Adventure+Busan" target="_blank">釜山樂天世界</a>：全日暢玩 Magic Forest。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="268-3 Dongbusan Gwangwang-ro, Gijang-gun, Busan, South Korea">
+                        **下午:** **【VBP 3】** <a href="https://www.google.com/maps/search/?api=1&query=Busan+Luge+Skyline" target="_blank">滑坡車 Luge Skyline</a> (奧西利亞站)。<span class="note">⚠️ 提醒：確認 7歲兒童身高。</span>
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li>**傍晚/晚上:** 🏖️ 海雲台/廣安里沙灘。</li>
                 </ul>
             </div>
 
@@ -213,10 +258,19 @@
                 <h3>Day 3: 🗼 VBP 結束與城市轉場</h3>
                 <p style="color: orange; font-weight: bold;">VBP 狀態: 預計 14:00 結束</p>
                 <ul>
-                    <li>**上午:** 換房/移動：海雲台退房 → 前往南浦洞飯店寄放行李/入住。</li>
-                    <li>**【VBP 4】中午 (VBP 結束前):** **龍頭山公園/釜山塔**登塔。 <span class="note">🚨 緊急提醒：務必在 VBP 結束前 (約 14:00) 刷卡完成登塔！</span></li>
-                    <li>**下午:** 🎨 甘川洞文化村：與小王子拍照散步 (免費)。</li>
-                    <li>**晚上:** 🍿 南浦洞/BIFF廣場：逛街與品嚐在地小吃。</li>
+                    <li>**上午:** 搬家：海雲台退房 → 南浦洞寄放行李/入住。</li>
+                    <li data-address="37-55 Yongdusan-gil, Jung-gu, Busan, South Korea">
+                        **【VBP 4】中午 (VBP 結束前):** <a href="https://www.google.com/maps/search/?api=1&query=Busan+Tower" target="_blank">龍頭山公園/釜山塔</a>登塔。 <span class="note">🚨 緊急提醒：務必在 VBP 結束前刷卡！</span>
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="203 Gamnae 2-ro, Saha-gu, Busan, South Korea">
+                        **下午:** 🎨 <a href="https://www.google.com/maps/search/?api=1&query=Gamcheon+Culture+Village" target="_blank">甘川洞文化村</a> (免費)。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="25 Nampo-gil, Jung-gu, Busan, South Korea">
+                        **晚上:** 🍿 <a href="https://www.google.com/maps/search/?api=1&query=BIFF+Square" target="_blank">BIFF廣場/南浦洞</a>小吃。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
                 </ul>
             </div>
             
@@ -224,9 +278,18 @@
                 <h3>Day 4: ⚓️ 歷史、開橋與文化</h3>
                 <p style="color: gray; font-weight: bold;">VBP 狀態: 已過期 / 自費日</p>
                 <ul>
-                    <li>**上午:** 🏞️ 太宗台：搭乘 Danubi 遊園車 (費用自理)。</li>
-                    <li>**中午/下午 (14:00):** 🌉 影島大橋：**觀看開橋儀式**。<span class="note">🚨 關鍵提醒：儀式**目前只在每週六舉行**，請確認您的 Day 4 是否為週六。</span></li>
-                    <li>**下午:** 🐟 札嘎其市場 (Jagalchi Market) 參觀/午餐。</li>
+                    <li data-address="178 Taejong-ro, Yeongdo-gu, Busan, South Korea">
+                        **上午:** 🏞️ <a href="https://www.google.com/maps/search/?api=1&query=Taejongdae+Park" target="_blank">太宗台</a> (搭乘 Danubi 遊園車/自費)。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="26-47 Nampodong 5(o)-ga, Jung-gu, Busan, South Korea">
+                        **中午/下午 (14:00):** 🌉 <a href="https://www.google.com/maps/search/?api=1&query=Yeongdo+Bridge" target="_blank">影島大橋</a>：觀看開橋儀式。 <span class="note">🚨 關鍵提醒：儀式**目前只在每週六舉行**！</span>
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="52 Jagalchi-ro, Jung-gu, Busan, South Korea">
+                        **下午:** 🐟 <a href="https://www.google.com/maps/search/?api=1&query=Jagalchi+Market" target="_blank">札嘎其市場</a> (Jagalchi Market) 參觀/午餐。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
                     <li>**晚上:** 🛍️ 國際市場/南浦洞商圈自由活動。</li>
                 </ul>
             </div>
@@ -235,10 +298,19 @@
                 <h3>Day 5: 🛍️ 購物與返程</h3>
                 <p style="color: gray; font-weight: bold;">VBP 狀態: 已過期 / 購物日</p>
                 <ul>
-                    <li>**上午:** 📖 寶水洞舊書街 (視興趣停留)。</li>
-                    <li>**中午/下午:** 🛒 Centum City (新世界百貨)：午餐與伴手禮採購。</li>
+                    <li data-address="42-2 Bosu-dong 1(il)-ga, Jung-gu, Busan, South Korea">
+                        **上午:** 📖 <a href="https://www.google.com/maps/search/?api=1&query=Bosu-dong+Bookstore+Street" target="_blank">寶水洞舊書街</a> (視興趣停留)。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
+                    <li data-address="35 Centum 4-ro, Haeundae-gu, Busan, South Korea">
+                        **中午/下午:** 🛒 <a href="https://www.google.com/maps/search/?api=1&query=Shinsegae+Department+Store+Centum+City" target="_blank">Centum City (新世界百貨)</a>：午餐與伴手禮採購。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
                     <li>可選：Spa Land 汗蒸幕 (需自費)。</li>
-                    <li>**下午/傍晚:** 前往金海機場 (PUS) → 華航晚回班機。</li>
+                    <li data-address="108 Gonghangjinip-ro, Gangseo-gu, Busan, South Korea">
+                        **下午/傍晚:** 前往 <a href="https://www.google.com/maps/search/?api=1&query=Gimhae+International+Airport" target="_blank">金海機場 (PUS)</a> → 華航晚回班機。
+                        <button class="copy-btn" onclick="copyAddress(this.parentNode.getAttribute('data-address'), this)">📋</button>
+                    </li>
                 </ul>
             </div>
 
@@ -333,6 +405,31 @@
             twdOutput.innerHTML = 
                 `${krwInput.toLocaleString()} KRW 約等於 <strong>${resultTWD.toFixed(0).toLocaleString()} TWD</strong>`;
         });
+        
+        // --- D. 複製地址功能 ---
+        function copyAddress(address, buttonElement) {
+            if (!address) return;
+
+            navigator.clipboard.writeText(address)
+                .then(() => {
+                    // 顯示複製成功訊息
+                    const originalText = buttonElement.innerHTML;
+                    const successSpan = document.createElement('span');
+                    successSpan.className = 'copy-success';
+                    successSpan.innerText = '已複製！';
+                    
+                    buttonElement.replaceWith(successSpan);
+
+                    setTimeout(() => {
+                        successSpan.replaceWith(buttonElement);
+                    }, 1500);
+                })
+                .catch(err => {
+                    console.error('複製失敗:', err);
+                    alert('複製地址失敗，請手動複製: ' + address);
+                });
+        }
+        window.copyAddress = copyAddress; // 將函式暴露給 HTML 的 onclick 使用
 
         // 頁面載入時執行：自動抓取天氣和匯率
         window.onload = function() {
