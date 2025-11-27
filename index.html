@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>釜山家庭旅遊 2026 互動規劃</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        /* 對話框/輸入框樣式 */
+        #chat-input {
+            width: 98%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box; /* 確保 padding 不會增加寬度 */
+            font-size: 16px;
+        }
+        /* 按鈕樣式 */
+        #send-button {
+            padding: 12px 25px;
+            background-color: #4CAF50; /* 綠色 */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        #send-button:hover {
+            background-color: #45a049;
+        }
+        /* 輸出結果區樣式 */
+        #output-area {
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px dashed #4CAF50;
+            background-color: #eafaea;
+            border-radius: 6px;
+            min-height: 80px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏖️ 釜山家庭旅遊 2026 互動資訊站</h1>
+        <p>這是一個模擬的互動式畫面。您可以輸入關於五天行程的問題，系統會給予回覆。</p>
+        
+        <textarea id="chat-input" rows="3" placeholder="請在這裡輸入您的問題，例如：Day 3 的行程是什麼？"></textarea>
+
+        <button id="send-button">送出查詢</button>
+
+        <h2>💬 旅遊資訊回覆</h2>
+        <div id="output-area">
+            等待您的提問...
+        </div>
+    </div>
+
+    <script>
+        // 當網頁完全載入後，為按鈕新增一個點擊事件監聽器
+        document.getElementById('send-button').addEventListener('click', function() {
+            var input = document.getElementById('chat-input').value.trim();
+            var outputArea = document.getElementById('output-area');
+            var response = "";
+
+            // 根據輸入內容產生回應 (這是最簡單的互動邏輯)
+            if (input.includes("Day 1")) {
+                response = "Day 1 的行程是：搭乘中華航空抵達，隨後乘坐藍線公園天空膠囊，欣賞廣安里大橋夜景。";
+            } else if (input.includes("Day 2")) {
+                response = "Day 2 的行程是：在釜山樂天世界城堡前合影，接著一家人會在Luge賽道上滑行（滑坡車將是爸爸、大兒子各一台，媽媽和小兒子一台）。";
+            } else if (input.includes("Day 3")) {
+                response = "Day 3 的行程是：乘坐地鐵移動，登上釜山塔俯瞰城市，並在甘川洞文化村與小王子雕像合影。";
+            } else if (input.includes("Day 4")) {
+                response = "Day 4 的行程是：乘坐太宗台 Danubi Train，觀看影島大橋開橋，並在札嘎其市場圍觀海鮮。";
+            } else if (input.includes("Day 5")) {
+                response = "Day 5 的行程是：Centum City 百貨購物，隨後乘坐機場巴士準備返程。";
+            } else if (input === "") {
+                response = "請輸入您的問題！";
+            } else {
+                response = "抱歉，我只知道 Day 1 到 Day 5 的行程資訊。請嘗試輸入例如「Day 4 的行程是什麼？」";
+            }
+
+            // 將回應內容顯示在輸出區域
+            outputArea.innerHTML = response;
+        });
+    </script>
+
+</body>
+</html>
